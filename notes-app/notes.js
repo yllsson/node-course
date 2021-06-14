@@ -1,9 +1,6 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-// getNotes() only returns the string 'Your notes...' at the moment.
-const getNotes = () => 'Your notes...';
-
 // addNote() takes 2 strings (title, body),
 // loads any previous notes and saves them into notes array,
 // checks for duplicate titles and if no duplicates pushes note to notes array
@@ -40,13 +37,24 @@ const removeNote = (title) => {
   }
 };
 
-// listNotes()
+// listNotes() loads in the notes and console logs the title of each note.
 const listNotes = () => {
   const notes = loadNotes();
   console.log(chalk.magenta.inverse('Your Notes'));
-  notes.forEach((note) => {
-    console.log(note.title);
-  });
+  notes.forEach((note) => console.log(note.title));
+};
+
+// readNote()
+const readNote = (title) => {
+  const notes = loadNotes();
+  const noteToRead = notes.find((note) => note.title === title);
+
+  if (noteToRead) {
+    console.log(chalk.magenta.inverse(noteToRead.title));
+    console.log(noteToRead.body);
+  } else {
+    console.log(chalk.red.inverse('Note not found!'));
+  }
 };
 
 // saveNotes() takes an array of note objects (notes), stringifies them and writes them to notes.json
@@ -69,8 +77,8 @@ const loadNotes = () => {
 };
 
 module.exports = {
-  getNotes,
   addNote,
   removeNote,
-  listNotes
+  listNotes,
+  readNote
 };

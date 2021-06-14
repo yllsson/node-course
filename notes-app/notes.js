@@ -1,4 +1,6 @@
+const chalk = require('chalk');
 const fs = require('fs');
+
 const getNotes = () => {
   return 'Your notes...';
 };
@@ -20,9 +22,9 @@ const addNote = (title, body) => {
     });
 
     saveNotes(notes);
-    console.log('New note added');
+    console.log(chalk.green.inverse('New note added'));
   } else {
-    console.log('Note title taken');
+    console.log(chalk.red.inverse('Note title taken'));
   }
 };
 
@@ -35,7 +37,12 @@ const removeNote = (title) => {
     return note.title !== title;
   });
 
-  saveNotes(newNotes);
+  if (notes.length > newNotes.length) {
+    console.log(chalk.green.inverse('Note removed!'));
+    saveNotes(newNotes);
+  } else {
+    console.log(chalk.red.inverse('No note found!'));
+  }
 };
 
 // saveNotes() takes an array of note objects (notes), stringifies them and writes them to notes.json

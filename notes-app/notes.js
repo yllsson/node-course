@@ -1,6 +1,7 @@
-const chalk = require('chalk');
 const fs = require('fs');
+const chalk = require('chalk');
 
+// getNotes() only returns the string 'Your notes...' at the moment.
 const getNotes = () => 'Your notes...';
 
 // addNote() takes 2 strings (title, body),
@@ -39,6 +40,15 @@ const removeNote = (title) => {
   }
 };
 
+// listNotes()
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log(chalk.magenta.inverse('Your Notes'));
+  notes.forEach((note) => {
+    console.log(note.title);
+  });
+};
+
 // saveNotes() takes an array of note objects (notes), stringifies them and writes them to notes.json
 const saveNotes = (notes) => {
   const stringifiedJSON = JSON.stringify(notes);
@@ -61,5 +71,6 @@ const loadNotes = () => {
 module.exports = {
   getNotes,
   addNote,
-  removeNote
+  removeNote,
+  listNotes
 };

@@ -26,6 +26,17 @@ const addNote = (title, body) => {
   }
 };
 
+// removeNote() loads the notes from notes.json,
+// filters through them and excludes any notes that matches the title given.
+// Then saves the new array to notes.json.
+const removeNote = (title) => {
+  const notes = loadNotes();
+  const newNotes = notes.filter((note) => {
+    return note.title !== title;
+  });
+
+  saveNotes(newNotes);
+};
 
 // saveNotes() takes an array of note objects (notes), stringifies them and writes them to notes.json
 const saveNotes = (notes) => {
@@ -49,4 +60,5 @@ const loadNotes = () => {
 module.exports = {
   getNotes,
   addNote,
+  removeNote
 };

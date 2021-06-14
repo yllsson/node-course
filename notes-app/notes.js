@@ -1,9 +1,7 @@
 const chalk = require('chalk');
 const fs = require('fs');
 
-const getNotes = () => {
-  return 'Your notes...';
-};
+const getNotes = () => 'Your notes...';
 
 // addNote() takes 2 strings (title, body),
 // loads any previous notes and saves them into notes array,
@@ -11,9 +9,7 @@ const getNotes = () => {
 // then saves notes to notes.json (through saveNotes())
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter((note) => {
-    return note.title === title;
-  });
+  const duplicateNotes = notes.filter((note) => note.title === title);
 
   if (duplicateNotes.length === 0) {
     notes.push({
@@ -33,9 +29,7 @@ const addNote = (title, body) => {
 // Then saves the new array to notes.json.
 const removeNote = (title) => {
   const notes = loadNotes();
-  const newNotes = notes.filter((note) => {
-    return note.title !== title;
-  });
+  const newNotes = notes.filter((note) => note.title !== title);
 
   if (notes.length > newNotes.length) {
     console.log(chalk.green.inverse('Note removed!'));

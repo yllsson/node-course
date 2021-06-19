@@ -7,7 +7,9 @@ const chalk = require('chalk');
 // then saves notes to notes.json (through saveNotes())
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicateNote = notes.find((note) => note.title === title);
+  const duplicateNote = notes.find(note => note.title === title);
+
+  debugger;
 
   if (!duplicateNote) {
     notes.push({
@@ -25,9 +27,9 @@ const addNote = (title, body) => {
 // removeNote() loads the notes from notes.json,
 // filters through them and excludes any notes that matches the title given.
 // Then saves the new array to notes.json.
-const removeNote = (title) => {
+const removeNote = title => {
   const notes = loadNotes();
-  const newNotes = notes.filter((note) => note.title !== title);
+  const newNotes = notes.filter(note => note.title !== title);
 
   if (notes.length > newNotes.length) {
     console.log(chalk.green.inverse('Note removed!'));
@@ -41,13 +43,13 @@ const removeNote = (title) => {
 const listNotes = () => {
   const notes = loadNotes();
   console.log(chalk.magenta.inverse('Your Notes'));
-  notes.forEach((note) => console.log(note.title));
+  notes.forEach(note => console.log(note.title));
 };
 
 // readNote()
-const readNote = (title) => {
+const readNote = title => {
   const notes = loadNotes();
-  const noteToRead = notes.find((note) => note.title === title);
+  const noteToRead = notes.find(note => note.title === title);
 
   if (noteToRead) {
     console.log(chalk.magenta.inverse(noteToRead.title));
@@ -58,7 +60,7 @@ const readNote = (title) => {
 };
 
 // saveNotes() takes an array of note objects (notes), stringifies them and writes them to notes.json
-const saveNotes = (notes) => {
+const saveNotes = notes => {
   const stringifiedJSON = JSON.stringify(notes);
   fs.writeFileSync('notes.json', stringifiedJSON);
 };

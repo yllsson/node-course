@@ -1,4 +1,5 @@
 const request = require('postman-request');
+const geocode = require('./utils/geocode');
 
 // const url =
 //   'http://api.weatkherstack.com/current?access_key=dcae8625cc1f675d84f3d990a6f285bd&query=37.8267,-122.4233&units=f';
@@ -23,18 +24,7 @@ const request = require('postman-request');
 // Geocoding
 // Address -> Lat/Long -> Weather
 
-const geoURL =
-  'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1IjoieWx2YXR1cm5lciIsImEiOiJja3FtbTJ4a3IwMTFtMm9ueGE5eGFoOXNmIn0.MFgz-eXa73qyMR-43lIleg&limit=1';
-
-request({ url: geoURL, json: true }, (error, response) => {
-  if (error) {
-    console.log('Unable to connect to Mapbox service');
-  } else if (response.body.features.length === 0) {
-    console.log('Invalid location. Try another search.');
-  } else {
-    const data = response.body.features;
-    const latitude = data[0].center[1];
-    const longitude = data[0].center[0];
-    console.log(latitude, longitude);
-  }
+geocode('Boston', (error, data) => {
+  console.log('Error', error);
+  console.log('Data', data);
 });

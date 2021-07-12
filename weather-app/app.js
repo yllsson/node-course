@@ -1,8 +1,9 @@
 const request = require('postman-request');
 const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 // const url =
-//   'http://api.weatkherstack.com/current?access_key=dcae8625cc1f675d84f3d990a6f285bd&query=37.8267,-122.4233&units=f';
+//   'http://api.weatherstack.com/current?access_key=dcae8625cc1f675d84f3d990a6f285bd&query=37.8267,-122.4233&units=f';
 
 // request({ url: url, json: true }, (error, response) => {
 //   if (error) {
@@ -25,6 +26,11 @@ const geocode = require('./utils/geocode');
 // Address -> Lat/Long -> Weather
 
 geocode('Boston', (error, data) => {
+  console.log('Error', error);
+  console.log('Data', data);
+});
+
+forecast(-73.9712, 40.7831, (error, data) => {
   console.log('Error', error);
   console.log('Data', data);
 });

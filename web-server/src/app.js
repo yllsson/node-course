@@ -1,27 +1,17 @@
+const path = require('path');
 const express = require('express');
 
 const app = express();
+const publicDirectoryPath = path.join(__dirname, '../public');
+
+// Alternate fix to extension issue. Taken from course Q&A.
+const options = {
+  extensions: ['htm', 'html']
+};
+
+app.use(express.static(publicDirectoryPath, options));
 
 // req, res = request, response
-app.get('', (req, res) => {
-  res.send('<h1>Weather</h1>');
-});
-
-app.get('/help', (req, res) => {
-  res.send([
-    {
-      name: 'Ylva'
-    },
-    {
-      name: 'Sarah'
-    }
-  ]);
-});
-
-app.get('/about', (req, res) => {
-  res.send('<h1>About page</h1>');
-});
-
 app.get('/weather', (req, res) => {
   res.send({
     forecast: 'Sunny, 20 degrees',

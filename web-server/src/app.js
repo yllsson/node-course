@@ -44,11 +44,30 @@ app.get('/help', (req, res) => {
   });
 });
 
-// req, res = request, response
 app.get('/weather', (req, res) => {
+  if (!req.query.address) {
+    return res.send({
+      error: 'You must provide an address'
+    });
+  }
+
   res.send({
     forecast: 'Sunny, 20 degrees',
-    location: 'Edinburgh'
+    location: 'Edinburgh',
+    address: req.query.address
+  });
+});
+
+app.get('/products', (req, res) => {
+  if (!req.query.search) {
+    return res.send({
+      error: 'You must provide a search term'
+    });
+  }
+
+  console.log(req.query.search);
+  res.send({
+    products: []
   });
 });
 

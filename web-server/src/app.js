@@ -2,15 +2,21 @@ const path = require('path');
 const express = require('express');
 
 const app = express();
+
+// Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates');
 
+// Setup handlebars engine and views location
 app.set('view engine', 'hbs');
+app.set('views', viewsPath);
 
-// Alternate fix to extension issue. Taken from course Q&A.
+// Alternate fix to file extension issue (which was forcing us to add "/index.html" to url). Taken from course Q&A.
 const options = {
   extensions: ['htm', 'html']
 };
 
+// Setup static directory to serve
 app.use(express.static(publicDirectoryPath, options));
 
 app.get('', (req, res) => {

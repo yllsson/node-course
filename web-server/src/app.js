@@ -40,7 +40,7 @@ app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help',
     name: 'Ylva Turner',
-    message: 'This is the help messsage!'
+    helpText: 'This is the help message!'
   });
 });
 
@@ -49,6 +49,22 @@ app.get('/weather', (req, res) => {
   res.send({
     forecast: 'Sunny, 20 degrees',
     location: 'Edinburgh'
+  });
+});
+
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    name: 'Ylva Turner',
+    errorMessage: 'Help article not found'
+  });
+});
+
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    name: 'Ylva Turner',
+    errorMessage: 'Page not found'
   });
 });
 

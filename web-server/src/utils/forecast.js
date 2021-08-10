@@ -15,7 +15,8 @@ const forecast = (latitude, longitude, callback) => {
       const precip = body.current.precip;
       const feelsLike = body.current.feelslike;
       const weather_description = body.current.weather_descriptions[0];
-      const data = `${weather_description}. It is currently ${temperature} degrees out. It feels like ${feelsLike} degrees. There is a ${precip}% chance of rain.`;
+      const wind_speed = body.current.wind_speed;
+      const data = `${weather_description}. It is currently ${temperature} degrees out. It feels like ${feelsLike} degrees. There is a ${precip}% chance of rain. The wind speed is ${wind_speed} km/h.`;
       callback(undefined, data);
     }
   });

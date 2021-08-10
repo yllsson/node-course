@@ -17,9 +17,7 @@ weatherForm.addEventListener('submit', (event) => {
 
 // My solution - opted for async-await
 const myFetch = async (address) => {
-  const res = await fetch(
-    `http://localhost:3000/weather?address=${encodeURIComponent(address)}`
-  );
+  const res = await fetch(`/weather?address=${encodeURIComponent(address)}`);
   const data = await res.json();
 
   if (data.error) {
